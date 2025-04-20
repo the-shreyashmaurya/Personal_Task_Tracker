@@ -3,6 +3,10 @@
 A lightweight Flutter application for managing personal tasks with authentication and Supabase backend integration. Built for the **Techstax Flutter Developer Assignment**.
 
 ---
+## Project Demo
+[Link](https://drive.google.com/file/d/14AmjwtAL32bjTXyBp9nAlK34qgUwbXyz/view?usp=sharing)
+
+---
 
 ## 📂 Project Structure
 
