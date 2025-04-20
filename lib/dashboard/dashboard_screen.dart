@@ -122,12 +122,31 @@ class _DashboardScreenState extends State<DashboardScreen> {
               itemCount: context.watch<TaskProvider>().taskList.length,
               itemBuilder: (context, index) {
                 TaskModel task = context.watch<TaskProvider>().taskList[index];
-                return TaskTile(
-                  taskId: task.id!,
-                  userId: context.watch<UserProvider>().userId,
-                  title: task.title,
-                  description: task.description,
-                  status: task.status,
+                return TweenAnimationBuilder<Offset>(
+                  tween: Tween<Offset>(
+                    begin: Offset(0, 1), // Slide in from right
+                    end: Offset.zero,
+                  ),
+                  duration: Duration(
+                    milliseconds: 400 + (index * 200),
+                  ), // staggered effect
+                  curve: Curves.easeOut,
+                  builder: (context, offset, child) {
+                    return Transform.translate(
+                      offset: offset * 30, // control slide distance
+                      child: Opacity(
+                        opacity: 1 - offset.dx, // fade-in with slide
+                        child: child,
+                      ),
+                    );
+                  },
+                  child: TaskTile(
+                    taskId: task.id!,
+                    userId: context.watch<UserProvider>().userId,
+                    title: task.title,
+                    description: task.description,
+                    status: task.status,
+                  ),
                 );
               },
             ),
